@@ -1,22 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&displa0y=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins";
+    font-family: "Poppins", Sans-Serif;
+    -webkit-touch-callout: none;
 }
-body {
-    overflow: hidden;
+button {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    touch-action: manipulation;
 }
-h1 {
-    position: relative;
-    font-size: 1.625rem;
-    z-index: 20;
-    top: 2vh;
-    width: 100vw;
-    text-align: center;
+button,
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
 }
-#tempo {
+.jogo > p {
     position: absolute;
     z-index: 20;
     top: 8vh;
@@ -59,6 +62,9 @@ input {
 input:focus {
     box-shadow: 1px 1px 5px 1px #00Afff;
 }
+label {
+    font-family: Consolas;
+}
 .jogo {
     display: none;
 }
@@ -66,17 +72,7 @@ canvas {
     height: 100vh;
     width: 100vw;
 }
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-size: 4rem;
-  font-variation-settings:
-    'FILL' 1,
-    'wght' 800,
-    'GRAD' 0,
-    'opsz' 50;
-}
 .btn {
-    touch-action: none;
     position: absolute;
     z-index: 900;
     width: 3rem;
@@ -87,7 +83,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 150ms;
+    transition: 400ms;
 }
 .btn:active {
     background-color: #c8c8c8;
@@ -96,13 +92,21 @@ canvas {
     bottom: calc(5vh + 3.5rem);
     right: 20vw;
 }
-.btn_ataque {
+.btn_baixo {
     bottom: 5vh;
     right: 20vw;
 }
+.btn_ataque {
+    bottom: calc(5vh + 3.5rem);
+    left: calc(15vw + 4rem);
+}
 .btn_direita {
     bottom: 5vh;
-    left: calc(15vw + 3.5rem);
+    left: calc(15vw + 4rem);
+}
+.btn_dash {
+    bottom: calc(5vh + 3.5rem);
+    left: 15vw;
 }
 .btn_esquerda {
     bottom: 5vh;
@@ -120,10 +124,38 @@ canvas {
 .btn_information:active {
     background-color: #C8C8C8;
 }
+.gameOverScreen {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    z-index: 9999;
+    border-radius: 20px;
+    padding: 10px 25px;
+    min-width: 100vw;
+    color: white;
+    min-height: 100vh;
+    visibility: hidden;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY_sfu76RmCsaqT30b7Im1MP2buX2k1WZLvIWtfoEclWsABOmz7w5cfqo&s=10') no-repeat center/cover;
+}
+.gameOverScreen h3 {
+    border-radius: 5px;
+    background-color: #979797;
+    padding: 5px 8px;
+}
+.gameOverScreen h1 {
+    border-radius: 20px;
+    background-color: #FF204B;
+    padding: 5px 8px;
+}
+.gameOverScreen button {
+    padding: 5px 15px;
+    background-color: #00FF2B;
+    border-radius: 5px;
+}
 .inf {
     position: relative;
     z-index: 1000;
-    top: 10vh;
+    top: 15vh;
     text-align: center;
     display: none;
     padding: 30px;
@@ -135,15 +167,31 @@ canvas {
     transition: .5s;
 }
 .inf * {
-    color: white;
     margin: 15px;
 }
+.inf .inf_btns {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    background-color: #ff8500;
+}
+.inf h2 {
+    color: white;
+} 
 .inf p {
     padding: 5px 10px;
-    color: black;
     background-color: #c8c8c8;
     border-radius: 5px;
 }
 .inf.aberto {
     display: block;
+}
+@keyframes desaparece {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
 }

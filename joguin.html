@@ -2,47 +2,63 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width;initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width;initial-scale=1.0;minimum-scale=1.0;maximum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Davi Garrido Matias Couto" />
         <meta name="description" content="Este é um jogo de teste para ampliar minhas habilidades de programador." />
+        <meta name="robots" content="no-image-index" />
         <title>Jogo daora</title>
         <link rel="stylesheet" href="joguin.css" />
         <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2292/2292738.png" type="image/png" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     </head>
     <body>
-        <h1>Nome do jogo</h1>
-        <p id="tempo"></p>
         <div class="form">
             <form>
                 <div>
                     <label for="nome">Nome:</label>
                     <input type="text" minlength="2" maxlength="10" id="nome" placeholder="Digite seu nome..." required />
-                </div>
-                <div>
-                    <label for="idade">Idade:</label>
-                    <input type="number" id="idade" min="3" max="100" placeholder="Sua idade..." required />
+                    <p id="erro" style="color: red; display: none;"></p>
                 </div>
                 <button type="submit">enviar</button>
             </form>
         </div>
         <div class="jogo">
-            <div class="inf">
-                <h2>Informações do jogador</h2>
+            <p>Tempo: <span id="tempo"></span></p>
+            <div class="gameOverScreen">
+                <h1>Game Over</h1>
+                <h3>Voce morreu em <span id="tempogo"></span></h3>
+                <button>Tentar novamente</button>
+            </div>
+            <div aria-labelledby="t_inf" class="inf" id="inf">
+                <h2 id="t_inf">Informações do jogador</h2>
                 <p id="nome_inf"></p>
                 <p id="dano_inf"></p>
                 <p id="velocidade_inf"></p>
+                <button id="alterar-nome" class="inf_btns">Alterar nome</button>
+                <button class="inf_btns stop">Parar música</button>
+                <div class="volume">
+                    <p id="volRes" style="color: green;"></p>
+                    <input type="range" value="70" step="5" min="0" max="100" />
+                </div>
             </div>
-            <button class="btn_information">
+            <button aria-label="Mais informações" aria-pressed="false" aria-expanded="false" aria-haspopup="menu" aria-controls="inf" class="btn_information">
                 <span class="material-symbols-outlined">more_vert</span>
+            </button>
+            <button class="btn btn_baixo">
+                <span class="material-symbols-outlined">keyboard_arrow_down</span>
             </button>
             <button aria-label="atacar" class="btn btn_ataque">
                 <span class="material-symbols-outlined">swords</span>
             </button>
-            <button aria-label="pular" class="btn btn_cima">
-                <span class="material-symbols-outlined">keyboard_double_arrow_up</span>
+            <button aria-label="andar para cima" class="btn btn_cima">
+                <span class="material-symbols-outlined">keyboard_arrow_up</span>
             </button>
             <button aria-label="andar para a direita" class="btn btn_direita">
                 <span class="material-symbols-outlined">keyboard_arrow_right</span>
+            </button>
+            <button class="btn btn_dash">
+                <span class="material-symbols-outlined">electric_bolt</span>
             </button>
             <button aria-label="andar para a esquerda" class="btn btn_esquerda">
                 <span class="material-symbols-outlined">keyboard_arrow_left</span>
