@@ -10,7 +10,7 @@ class Player {
         this.largTotal = 232
         this.vida = 25
         this.parado = true
-        this.dano = 2
+        this.dano = 3
         this.playerCarregado = false
         this.tempoDash = 15
         this.cooldownDash = 120
@@ -54,9 +54,9 @@ class Player {
 
             dash.addEventListener('pointerdown', () => {
                 if (this.cooldownDash === 0 && !this.dandoDash) {
-                    this.dandoDash = true;
-                    this.tempoDash = 15; // reinicia a duração do dash
-                    dash.disabled = true; // opcional: desativa o botão visualmente
+                    this.dandoDash = true
+                    this.tempoDash = 15
+                    dash.disabled = true
                 }
             });
 
@@ -111,8 +111,7 @@ class Player {
     }
 
     drawPlayer = () => {
-    const { c, largSprite, direcao, parado, velocidade, playerimg, largTotal, direcaoId,
-        playerCarregado, posicao: { x, y }, altura, largura } = this;
+    const { c, largSprite, direcao, parado, velocidade, playerimg, largTotal, direcaoId, playerCarregado, posicao: { x, y }, altura, largura } = this;
 
     if (playerCarregado) {
         if (largSprite < largTotal) {
@@ -124,15 +123,16 @@ class Player {
                     this.tempo++;
                 }
             } else {
-                this.largSprite = 0
                 if (direcao === "direita") {
                     this.largSprite = 58
+                } else {
+                    this.largSprite = 0
                 }
             }
-            c.drawImage(playerimg, largSprite, direcaoId * 87, 58, 87, x, y, largura, altura);
         } else {
             this.largSprite = 0;
         }
+        c.drawImage(playerimg, largSprite, direcaoId * 87, 58, 87, x, y, largura, altura);
     }
 }
 

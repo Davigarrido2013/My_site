@@ -40,9 +40,11 @@ const div_volume = document.querySelector('.volume')
 
 // Áudio
 let audiosCarregados = false;
-let audioEspada = new Audio("./audiosJogo/espada.mp3");
-let audioUgh = new Audio("./audiosJogo/ugh.mp3");
-const audios = [audioEspada, audioUgh];
+const audioEspada = new Audio("./audiosJogo/espada.mp3");
+const audioUgh = new Audio("./audiosJogo/ugh.mp3")
+const audioDash = new Audio("./audiosJogo/dash.mp3")
+
+const audios = [audioEspada, audioUgh, audioDash];
 let ac = 0;
 audios.forEach((audio) => {
     audio.addEventListener("canplaythrough", () => {
@@ -103,14 +105,19 @@ function startGame() {
         
         // Som da espada (uma vez por ataque)
         if (player.atacando && !player.audioTocado && audiosCarregados) {
-            audioEspada.currentTime = 0.4;
+            audioEspada.currentTime = 0.85;
             audioEspada.play();
             player.audioTocado = true;
         }
         if (!player.atacando) {
             player.audioTocado = false;
         }
-        
+
+        if (player.dandoDash && audiosCarregados) {
+            audioDash.currentTime = 0.7
+            audioDash.play()
+        }
+
         if (enemie.vida > 0 && colideRetangulos(player, enemie, true)) {
             player.atacando = false;
             enemie.danificado = true;
@@ -188,6 +195,12 @@ if (!nomeSalvo) {
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     localStorage.setItem('Nome', nome.value);
+    if (!nomeSalvo)
+        nomeSalvo = localStorage.getItem('Nome');
+    nome.value = nomeSalvo;
+    infNome.textContent = `Nome de usuário: ${nomeSalvo}`;
+    infDano.textContent = `Dano: ${player.dano}`;
+    infVelocidade.textContent = `Velocidade: ${player.velocidade}`;
     parte1.style.animation = "desaparece 1s ease forwards";
     setTimeout(() => {
         parte1.style.display = "none";
@@ -262,7 +275,7 @@ stop.addEventListener("click", () => {
 
 function musicaTema() {
     audioTema.loop = true
-    audioTema.volume = 0.5
+    audioTema.volume = 0.7
     audioTema.src = "./audiosJogo/musica_calma.mp3"
     audioTema.oncanplaythrough = () => {
         audioTema.play()

@@ -5,19 +5,21 @@
     box-sizing: border-box;
     font-family: "Poppins", Sans-Serif;
     -webkit-touch-callout: none;
-}
-button {
-    cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    touch-action: manipulation;
 }
-button,
-button:focus,
-button:active {
-  outline: none;
-  box-shadow: none;
+*:focus,
+*:active,
+*:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+}
+button {
+    cursor: pointer;
+    touch-action: none;
 }
 .jogo > p {
     position: absolute;
@@ -164,7 +166,6 @@ canvas {
     border-radius: 20px;
     background-image: linear-gradient(to bottom right, #910000, #FF4C4C);
     border: 2px solid black;
-    transition: .5s;
 }
 .inf * {
     margin: 15px;
@@ -177,7 +178,7 @@ canvas {
 }
 .inf h2 {
     color: white;
-} 
+}
 .inf p {
     padding: 5px 10px;
     background-color: #c8c8c8;
